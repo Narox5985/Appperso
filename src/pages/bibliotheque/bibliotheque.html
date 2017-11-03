@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Bibliothèque</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Ma bibliothèque</h2>
+
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="task in tasks">
+        <!-- {{task.title}} -->
+      </ion-item>
+    </ion-list>
+
+  <ion-row center>
+    <ion-col text-center>
+      <button ion-button round [navPush]="pushPage">Ajouter un livre</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+</ion-content>
