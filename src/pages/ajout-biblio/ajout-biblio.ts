@@ -1,15 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { Storage } from '@ionic/storage'
 import { NativeStorage } from '@ionic-native/native-storage';
 
-
-/**
- * Generated class for the AjoutBiblioPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,20 +11,27 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 export class AjoutBiblioPage {
 
-  @ViewChild('myNav') nav: NavController
-  pushPage: any;
-  public title;
-  public local: Storage;
+  title: string;
+  description: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private nativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, public view: ViewController) {
 
   }
 
-  setInfo(title) {
-    this.storage.set('email', title);
+  saveItem(){
+
+    let newItem = {
+      title: this.title,
+      description: this.description
+    };
+
+    this.view.dismiss(newItem, this.title);
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AjoutBiblioPage');
+  close(){
+    this.view.dismiss();
   }
+
+
 }

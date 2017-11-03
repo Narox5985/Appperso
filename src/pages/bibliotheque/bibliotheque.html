@@ -1,24 +1,29 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Bibliothèque</ion-title>
+  <ion-navbar color="blue">
+    <ion-title>
+      Ma bibliothèque
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
+    </ion-buttons>
+    <button class="button button-icon icon ion-ios-minus-outline" ng-click="showDelete = !showDelete"></button>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Ma bibliothèque</h2>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items">
 
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="task in tasks">
-        <!-- {{task.title}} -->
+      <ion-item>
+      {{item.title}}
       </ion-item>
-    </ion-list>
 
-  <ion-row center>
-    <ion-col text-center>
-      <button ion-button round [navPush]="pushPage">Ajouter un livre</button>
-    </ion-col>
-  </ion-row>
+      <ion-item-options>
+        <button danger (click)="removeItem(item)"><ion-icon trash></ion-icon> Delete</button>
+      </ion-item-options>
 
-</ion-content>
+    </ion-item-sliding>
+
+  </ion-list>
+
 </ion-content>

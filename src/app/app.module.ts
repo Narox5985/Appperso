@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { BibliothequePage } from '../pages/bibliotheque/bibliotheque';
 import { ALirePage } from '../pages/a-lire/a-lire';
 import { AjoutBiblioPage } from '../pages/ajout-biblio/ajout-biblio';
+import { BookdetailPage } from '../pages/bookdetail/bookdetail';
 
 
 import { TabsPage } from '../pages/tabs/tabs';
@@ -13,8 +14,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {NativeStorage} from "@ionic-native/native-storage";
-import {Storage} from "@ionic/storage";
-import {Localstorage} from '../providers/localstorage';
+import { IonicStorageModule } from '@ionic/storage';
+import { Data } from '../providers/data/data';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,13 @@ import {Localstorage} from '../providers/localstorage';
     BibliothequePage,
     ALirePage,
     AjoutBiblioPage,
+    BookdetailPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,6 +37,7 @@ import {Localstorage} from '../providers/localstorage';
     BibliothequePage,
     ALirePage,
     AjoutBiblioPage,
+    BookdetailPage,
     TabsPage
   ],
   providers: [
@@ -41,8 +45,7 @@ import {Localstorage} from '../providers/localstorage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativeStorage,
-    Localstorage,
-    Storage
+    Data, {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
