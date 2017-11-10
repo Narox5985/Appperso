@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 import { BibliothequePage } from '../pages/bibliotheque/bibliotheque';
 import { ALirePage } from '../pages/a-lire/a-lire';
@@ -16,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {NativeStorage} from "@ionic-native/native-storage";
 import { IonicStorageModule } from '@ionic/storage';
 import { Data } from '../providers/data/data';
+import { RatingProvider } from '../providers/rating/rating';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { Data } from '../providers/data/data';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,7 +48,9 @@ import { Data } from '../providers/data/data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativeStorage,
-    Data, {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Data, {provide: ErrorHandler, useClass: IonicErrorHandler},
+    RatingProvider,
+    RatingProvider
   ]
 })
 export class AppModule {}

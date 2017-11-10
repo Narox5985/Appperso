@@ -6,7 +6,6 @@
     <ion-buttons end>
       <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
     </ion-buttons>
-    <button class="button button-icon icon ion-ios-minus-outline" ng-click="showDelete = !showDelete"></button>
   </ion-navbar>
 </ion-header>
 
@@ -14,16 +13,16 @@
   <ion-list>
     <ion-item-sliding *ngFor="let item of items">
 
-      <ion-item>
-      {{item.title}}
+      <ion-item (click)="viewItem(item)">{{item.title}}
       </ion-item>
 
       <ion-item-options>
-        <button danger (click)="removeItem(item)"><ion-icon trash></ion-icon> Delete</button>
+        <button ion-button (click)="removeItem(item)" color="danger" large="true"><ion-icon name="trash"></ion-icon></button>
+        <button ion-button (click)="editNote(item)" color="light" large="true"><ion-icon name="paper"></ion-icon></button>
       </ion-item-options>
 
     </ion-item-sliding>
-
   </ion-list>
+
 
 </ion-content>

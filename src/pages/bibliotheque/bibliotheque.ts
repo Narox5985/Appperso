@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import {Component, Injectable, Pipe, PipeTransform} from '@angular/core';
+import {AlertController, ModalController, NavController, NavParams} from 'ionic-angular';
 import { AjoutBiblioPage } from '../ajout-biblio/ajout-biblio'
 import { BookdetailPage } from '../bookdetail/bookdetail';
 import { Data } from '../../providers/data/data';
 import {titleCase} from "@ionic/app-scripts";
+import {ALirePage} from "../a-lire/a-lire";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-bibliotheque',
   templateUrl: 'bibliotheque.html'
 })
+
 export class BibliothequePage {
 
   public items = [];
+  title;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data, public navParams: NavParams, private alertCtrl: AlertController) {
 
     this.dataService.getData().then((todos) => {
 
@@ -26,7 +30,6 @@ export class BibliothequePage {
   }
 
   ionViewDidLoad(){
-
   }
 
   addItem(){
@@ -45,6 +48,36 @@ export class BibliothequePage {
 
   }
 
+  editNote(item){
+
+    let prompt = this.alertCtrl.create({
+      title: 'Edit Note',
+      inputs: [{
+        placeholder: 'Modifier le titre',
+        name: 'title',
+      }],
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            let index = this.items.indexOf(item);
+
+            if(index > -1){
+              this.items[index] = data;
+            }
+          }
+        }
+      ]
+    });
+
+    prompt.present();
+
+  }
+
+
   saveItem(item){
     this.items.push(item);
     this.dataService.save(this.items);
@@ -54,9 +87,8 @@ export class BibliothequePage {
     this.navCtrl.push(BookdetailPage, {
       item: item
     });
-
-
   }
+
 
   removeItem(item){
 
@@ -65,13 +97,23 @@ export class BibliothequePage {
 
       if(this.items[i] == item){
         this.items.splice(i, 1);
+        this.dataService.save(this.items);
+        //this.dataService.save(JSON.stringify(this.items));
+        this.navCtrl.setRoot(BibliothequePage); // previous view will be cached
+        this.navCtrl.setRoot(BibliothequePage);
       }
-
     }
-
   }
 
+
+
+
+
+
+
 }
+
+
 
 
 
