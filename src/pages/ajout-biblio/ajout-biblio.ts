@@ -6,6 +6,7 @@ import {
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FilePath } from "@ionic-native/file-path";
+import {DomSanitizer} from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -39,25 +40,33 @@ export class AjoutBiblioPage {
     private camera: Camera,
     private filePath: FilePath,
     private diagnostic: Diagnostic,
+    public _DomSanitizer: DomSanitizer,
     public toastCtrl: ToastController,
     public platform: Platform) {
   }
 
   Picture() {
     this.takePicture(this.camera.PictureSourceType.CAMERA);
-    console.log("Réussi");
-
   }
 
-  takePicture(sourceType){
-  const options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    sourceType,
-    correctOrientation: true,
-    allowEdit: true
-  };}
+  takePicture(sourceType) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      sourceType,
+      correctOrientation: true,
+      allowEdit: true
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+    });
+  }
 
 
 

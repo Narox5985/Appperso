@@ -47,6 +47,8 @@
         <ion-icon name="md-camera"></ion-icon>
       </button>
 
+    <img [src]="_DomSanitizer.bypassSecurityTrustUrl(base64Image)"/>
+
     <ion-item>
       <ion-label floating>Commentaires</ion-label>
       <ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
