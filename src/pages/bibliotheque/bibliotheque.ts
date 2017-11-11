@@ -51,7 +51,7 @@ export class BibliothequePage {
   editNote(item){
 
     let prompt = this.alertCtrl.create({
-      title: 'Edit Note',
+      title: 'Editer le titre',
       inputs: [{
         placeholder: 'Modifier le titre',
         name: 'title',

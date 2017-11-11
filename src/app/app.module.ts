@@ -17,7 +17,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {NativeStorage} from "@ionic-native/native-storage";
 import { IonicStorageModule } from '@ionic/storage';
 import { Data } from '../providers/data/data';
-import { RatingProvider } from '../providers/rating/rating';
+import { Camera } from '@ionic-native/camera';
+import {Diagnostic} from "@ionic-native/diagnostic";
+import {CameraPreview, CameraPreviewDimensions} from "@ionic-native/camera-preview";
+import { FilePath } from "@ionic-native/file-path";
+
 
 @NgModule({
   declarations: [
@@ -49,8 +53,10 @@ import { RatingProvider } from '../providers/rating/rating';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativeStorage,
     Data, {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RatingProvider,
-    RatingProvider
+    Camera,
+    Diagnostic,
+    CameraPreview,
+    FilePath,
   ]
 })
 export class AppModule {}

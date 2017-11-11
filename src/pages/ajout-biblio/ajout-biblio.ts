@@ -1,21 +1,28 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
-import { Storage } from '@ionic/storage'
-import { NativeStorage } from '@ionic-native/native-storage';
-
+import {
+  ActionSheetButton, IonicPage, NavController, NavParams, Platform, ToastController,
+  ViewController
+} from 'ionic-angular';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FilePath } from "@ionic-native/file-path";
 
 @IonicPage()
 @Component({
   selector: 'page-ajout-biblio',
   templateUrl: 'ajout-biblio.html',
+
 })
 export class AjoutBiblioPage {
+
 
   title: string;
   description: string;
   firstname: string;
   surname: string;
   date = new Date().toISOString();
+
+
 
   @Input() numStars: number = 5;
   @Input() readOnly: boolean = false;
@@ -26,9 +33,33 @@ export class AjoutBiblioPage {
   stars: string[] = [];
 
 
-  constructor(public navCtrl: NavController, public view: ViewController) {
+  constructor(
+    public navCtrl: NavController,
+    public view: ViewController,
+    private camera: Camera,
+    private filePath: FilePath,
+    private diagnostic: Diagnostic,
+    public toastCtrl: ToastController,
+    public platform: Platform) {
+  }
+
+  Picture() {
+    this.takePicture(this.camera.PictureSourceType.CAMERA);
+    console.log("Réussi");
 
   }
+
+  takePicture(sourceType){
+  const options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    sourceType,
+    correctOrientation: true,
+    allowEdit: true
+  };}
+
+
 
   ngAfterViewInit(){
     this.calc();
@@ -76,6 +107,9 @@ export class AjoutBiblioPage {
   close(){
     this.view.dismiss();
   }
+
+
+
 
 
 }
