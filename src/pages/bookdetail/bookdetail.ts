@@ -34,7 +34,10 @@ export class BookdetailPage {
 
   constructor(public navParams: NavParams, public dataService: Data, public view: ViewController){
 
+
   }
+
+
 
   ionViewDidLoad() {
     this.title = this.navParams.get('item').title;
@@ -43,9 +46,11 @@ export class BookdetailPage {
     this.date = this.navParams.get('item').date;
     this.rate=this.navParams.get('item').rate;
     this.description = this.navParams.get('item').description;
-    this.base64Image = this.navParams.get('item').base64Image;
+    this.base64Image = this.navParams.get('item').picture;
+
     let cameraImageSelector = document.getElementById('camera-image');
     cameraImageSelector.setAttribute('src', this.base64Image);
+
   }
 
   ngAfterViewInit(){
