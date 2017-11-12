@@ -27,9 +27,11 @@ export class BibliothequePage {
 
     });
 
+
   }
 
   ionViewDidLoad(){
+
   }
 
   addItem(){

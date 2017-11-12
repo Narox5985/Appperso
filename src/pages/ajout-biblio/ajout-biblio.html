@@ -37,15 +37,17 @@
     <ion-grid no-padding no-margin class="ion-rating-container">
       <ion-row>
         <ion-col text-center *ngFor="let star of stars; let i = index" tappable (click)="starClicked(i)">
-          <ion-icon [name]="star"></ion-icon>
+          <ion-icon class="star" [name]="star"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
     </ion-item>
 
-      <button full ion-button color="blue" color="primary" (click)="Picture()">
-        <ion-icon name="md-camera"></ion-icon>
-      </button>
+        <ion-row>
+          <ion-col style="text-align: center">
+              <button ion-button round  (click)="Picture()">Prendre une photo</button>
+          </ion-col>
+        </ion-row>
 
     <img id="camera-image" />
 
@@ -56,6 +58,10 @@
 
   </ion-list>
 
-  <button full ion-button color="blue" (click)="saveItem()">Save</button>
+  <ion-row>
+    <ion-col style="text-align: center">
+  <button ion-button round  (click)="saveItem()">Enregistrer</button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

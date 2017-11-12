@@ -21,6 +21,8 @@ import { Camera } from '@ionic-native/camera';
 import {Diagnostic} from "@ionic-native/diagnostic";
 import {CameraPreview, CameraPreviewDimensions} from "@ionic-native/camera-preview";
 import { FilePath } from "@ionic-native/file-path";
+import {AjoutalirePage} from "../pages/ajout-a-lire/ajout-a-lire";
+import {Alire, AlireProvider} from '../providers/alire/alire';
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import { FilePath } from "@ionic-native/file-path";
     ALirePage,
     AjoutBiblioPage,
     BookdetailPage,
+    AjoutalirePage,
     TabsPage
   ],
   imports: [
@@ -45,6 +48,7 @@ import { FilePath } from "@ionic-native/file-path";
     ALirePage,
     AjoutBiblioPage,
     BookdetailPage,
+    AjoutalirePage,
     TabsPage
   ],
   providers: [
@@ -53,6 +57,7 @@ import { FilePath } from "@ionic-native/file-path";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     NativeStorage,
     Data, {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Alire, {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     Diagnostic,
     CameraPreview,
