@@ -71,7 +71,11 @@
       "cordova-plugin-camera-preview": {},
       "cordova-plugin-file": {},
       "cordova.plugins.diagnostic": {},
-      "cordova-plugin-filepath": {}
+      "cordova-plugin-filepath": {},
+      "org.apache.cordova.camera": {
+        "CAMERA_USAGE_DESCRIPTION": "App would like to access the camera.",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "App would like to access the library."
+      }
     },
     "platforms": [
       "ios"

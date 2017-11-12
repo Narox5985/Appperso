@@ -22,6 +22,7 @@ export class BookdetailPage {
   date;
   surname;
   rate;
+  base64Image;
 
   @Input() numStars: number = 5;
   @Input() readOnly: boolean = true;
@@ -42,6 +43,9 @@ export class BookdetailPage {
     this.date = this.navParams.get('item').date;
     this.rate=this.navParams.get('item').rate;
     this.description = this.navParams.get('item').description;
+    this.base64Image = this.navParams.get('item').base64Image;
+    let cameraImageSelector = document.getElementById('camera-image');
+    cameraImageSelector.setAttribute('src', this.base64Image);
   }
 
   ngAfterViewInit(){
