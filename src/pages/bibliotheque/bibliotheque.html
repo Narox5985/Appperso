@@ -10,12 +10,15 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()" placeholder="Entrez le titre cherché"></ion-searchbar>
+
   <ion-list>
     <ion-item-group>
 
     <ion-item-sliding *ngFor="let item of items">
 
-      <ion-item (click)="viewItem(item)">{{item.title}}</ion-item>
+      <ion-item (click)="viewItem(item)">{{item.date | date: "dd/MM/yyyy"}} -- {{item.title}} </ion-item>
 
       <ion-item-options>
         <button ion-button (click)="removeItem(item)" color="danger" large="true"><ion-icon name="trash"></ion-icon></button>

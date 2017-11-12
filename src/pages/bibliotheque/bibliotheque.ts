@@ -15,6 +15,7 @@ import * as _ from 'lodash';
 export class BibliothequePage {
 
   public items = [];
+  searchTerm: string = '';
   title;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Data, public navParams: NavParams, private alertCtrl: AlertController) {
@@ -31,6 +32,14 @@ export class BibliothequePage {
   }
 
   ionViewDidLoad(){
+
+    this.setFilteredItems();
+
+  }
+
+  setFilteredItems() {
+
+    this.items = this.dataService.filterItems(this.searchTerm);
 
   }
 
