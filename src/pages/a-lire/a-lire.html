@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()" placeholder="Entrez le titre cherché"></ion-searchbar>
+
   <ion-list>
     <ion-item-group>
 

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {BookdetailPage} from "../bookdetail/bookdetail";
-import {AjoutALirePage, AjoutalirePage} from "../ajout-a-lire/ajout-a-lire";
-import {Data} from "../../providers/data/data";
+import {AjoutalirePage} from "../ajout-a-lire/ajout-a-lire";
 import {Alire} from "../../providers/alire/alire";
+import {Data} from "../../providers/data/data";
+import {AjoutBiblioPage} from "../ajout-biblio/ajout-biblio";
+import {AliredetailPage} from "../aliredetail/aliredetail";
+
 
 /**
  * Generated class for the ALirePage page.
@@ -20,6 +23,7 @@ import {Alire} from "../../providers/alire/alire";
 export class ALirePage {
 
   public items = [];
+  searchTerm: string = '';
   title;
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController, public dataService: Alire, public navParams: NavParams, private alertCtrl: AlertController) {
@@ -40,13 +44,17 @@ export class ALirePage {
 
   }
 
-  addItem() {
+  setFilteredItems() {
+    this.items = this.dataService.filterItems(this.searchTerm);
+  }
+
+  addItem(){
 
     let addModal = this.modalCtrl.create(AjoutalirePage);
 
     addModal.onDidDismiss((item) => {
 
-      if (item) {
+      if(item){
         this.saveItem(item);
       }
 
@@ -92,7 +100,7 @@ export class ALirePage {
   }
 
   viewItem(item) {
-    this.navCtrl.push(BookdetailPage, {
+    this.navCtrl.push(AliredetailPage, {
       item: item
     });
   }

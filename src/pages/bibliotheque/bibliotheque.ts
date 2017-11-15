@@ -5,7 +5,6 @@ import { BookdetailPage } from '../bookdetail/bookdetail';
 import { Data } from '../../providers/data/data';
 import {titleCase} from "@ionic/app-scripts";
 import {ALirePage} from "../a-lire/a-lire";
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-bibliotheque',
@@ -32,15 +31,12 @@ export class BibliothequePage {
   }
 
   ionViewDidLoad(){
-
-    this.setFilteredItems();
+      this.setFilteredItems()
 
   }
 
   setFilteredItems() {
-
     this.items = this.dataService.filterItems(this.searchTerm);
-
   }
 
   addItem(){

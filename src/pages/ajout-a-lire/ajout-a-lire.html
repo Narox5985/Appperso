@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    <ion-title>
+      Ajouter un livre
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Titre du livre</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Prénom de l'auteur</ion-label>
+      <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Nom de l'auteur</ion-label>
+      <ion-input type="text" [(ngModel)]="surname"></ion-input>
+    </ion-item>
+
+
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button round  (click)="Picture()">Prendre une photo</button>
+      </ion-col>
+    </ion-row>
+
+    <img id="camera-image" />
+
+    <ion-item>
+      <ion-label floating>Commentaires</ion-label>
+      <ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-row>
+    <ion-col style="text-align: center">
+      <button ion-button round  (click)="saveItem()">Enregistrer</button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
